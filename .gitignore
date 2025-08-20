@@ -1,0 +1,36 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# --- Virtual Environment ---
+venv/
+ENV/
+env/
+.venv/
+
+# --- Logs & Outputs ---
+*.log
+*.out
+*.txt
+brick_layout.txt
+brick_layout_100.txt
+
+# --- VS Code ---
+.vscode/
+*.code-workspace
+
+# --- macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# --- Jupyter / Colab (if used later) ---
+.ipynb_checkpoints/
+*.ipynb

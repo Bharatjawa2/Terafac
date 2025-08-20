@@ -1,38 +1,30 @@
-from cuboid import BRICK, BRICK_VOL, WALL_THICKNESS
+from cuboid import BRICK
+
+ORIENTATIONS = [
+    (200, 100, 100),
+    (100, 200, 100),
+    (100, 100, 200)
+]
 
 def generate_layout(dimensions, N):
-    """
-    Generate brick placement with location + orientation.
-    Walls must be at least 200mm thick.
-    """
+    """Greedy layer-by-layer brick placement"""
     L, W, H = dimensions
     bricks = []
     brick_id = 1
 
-    for z in range(0, H, 100):
+    for z in range(0, H, 100):  # smallest brick step
         for y in range(0, W, 100):
             for x in range(0, L, 100):
-
-                # Wall check: within 200mm from any face
-                if (x < WALL_THICKNESS or x >= L - WALL_THICKNESS or
-                    y < WALL_THICKNESS or y >= W - WALL_THICKNESS or
-                    z < WALL_THICKNESS or z >= H - WALL_THICKNESS):
-
-                    # Orient bricks along X-axis if possible
-                    if x + 200 <= L:
-                        orientation = (200, 100, 100)
-                    else:
-                        orientation = (100, 200, 100)
-
-                    bricks.append({
-                        "id": brick_id,
-                        "x": x,
-                        "y": y,
-                        "z": z,
-                        "orientation": orientation
-                    })
-                    brick_id += 1
-
-                    if brick_id > N:
-                        return bricks
+                for orient in ORIENTATIONS:
+                    l, w, h = orient
+                    if (x + l <= L and y + w <= W and z + h <= H):
+                        bricks.append({
+                            "id": brick_id,
+                            "x": x, "y": y, "z": z,
+                            "orientation": orient
+                        })
+                        brick_id += 1
+                        if brick_id > N:
+                            return bricks
+                        break
     return bricks

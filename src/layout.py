@@ -1,4 +1,3 @@
-# layout.py
 from cuboid import BRICK
 
 ORIENTATIONS = [
@@ -20,7 +19,6 @@ def generate_layout(dimensions, N):
                 for orient in ORIENTATIONS:
                     l, w, h = orient
                     if x + l <= L and y + w <= W and z + h <= H:
-                        # Only vertical walls: skip interior
                         if 200 <= x <= L-200-l and 200 <= y <= W-200-w:
                             continue
                         # Skip top and bottom

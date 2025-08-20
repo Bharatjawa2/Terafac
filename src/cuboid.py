@@ -1,18 +1,14 @@
-# cuboid.py
 import numpy as np
 
-BRICK = (200, 100, 100)   # brick dimensions (L x W x H) in mm
+BRICK = (200, 100, 100)
 BRICK_VOL = np.prod(BRICK)
 WALL_THICKNESS = 200
 
-# cuboid.py (inside feasible)
 def feasible(L, W, H, N):
     """Check if a cuboid with given dimensions is feasible"""
-    # Require at least 200mm wall thickness
     if L <= 2*WALL_THICKNESS or W <= 2*WALL_THICKNESS or H <= 2*WALL_THICKNESS:
         return False
 
-    # Approximate required number of bricks for walls
     outer_volume = L * W * H
     inner_volume = (L - 2*WALL_THICKNESS) * (W - 2*WALL_THICKNESS) * (H - 2*WALL_THICKNESS)
     wall_volume = outer_volume - inner_volume

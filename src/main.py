@@ -1,10 +1,9 @@
-# main.py
 from cuboid import find_best_cuboid
 from layout import generate_layout
 from visualize import animate_cuboid
 
 def main():
-    N = 10000  # number of bricks
+    N = 10000  
     best_dims, best_vol = find_best_cuboid(N)
     layout, firsts = generate_layout(best_dims, N)
 

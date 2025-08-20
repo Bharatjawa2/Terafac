@@ -1,7 +1,6 @@
 import numpy as np
 
-# Brick properties
-BRICK = (200, 100, 100)    # mm
+BRICK = (200, 100, 100)   
 BRICK_VOL = np.prod(BRICK)
 WALL_THICKNESS = 200
 
@@ -13,7 +12,7 @@ def feasible(L, W, H, N):
             W >= 2 * WALL_THICKNESS and
             H >= 2 * WALL_THICKNESS)
 
-def find_best_cuboid(N, search_range=1000):
+def find_best_cuboid(N, search_range=10000):
     """Find best cuboid dimensions near cube root volume"""
     total_volume = N * BRICK_VOL
     target_side = round((total_volume) ** (1/3) / 100) * 100

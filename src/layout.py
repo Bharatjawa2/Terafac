@@ -12,7 +12,7 @@ def generate_layout(dimensions, N):
     bricks = []
     brick_id = 1
 
-    for z in range(0, H, 100):  # smallest brick step
+    for z in range(0, H, 100):
         for y in range(0, W, 100):
             for x in range(0, L, 100):
                 for orient in ORIENTATIONS:
@@ -28,3 +28,15 @@ def generate_layout(dimensions, N):
                             return bricks
                         break
     return bricks
+
+
+def remove(layout,x,y,z):
+    new_layout=[]
+    for brick in layout:
+        a,b,c=brick["x"],brick["y"],brick["z"]
+        if (a,b,c)==(x,y,z):
+            continue
+        new_layout.append(brick)
+    
+    return new_layout
+
